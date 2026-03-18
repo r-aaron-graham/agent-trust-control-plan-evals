@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.DS_Store
+app/data/runtime/*.json
+app/data/runtime/*.jsonl
+app/data/runtime/*.log
