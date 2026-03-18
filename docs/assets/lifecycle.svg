@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220">
+  <style>
+    .box { fill:#141b33; stroke:#65b4ff; stroke-width:2; rx:14; }
+    .text { fill:#edf2ff; font-family:Arial, sans-serif; font-size:20px; }
+    .small { fill:#9fb2d9; font-family:Arial, sans-serif; font-size:14px; }
+    .arrow { stroke:#65b4ff; stroke-width:3; marker-end:url(#m); }
+  </style>
+  <defs><marker id="m" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#65b4ff"/></marker></defs>
+  <rect class="box" x="20" y="60" width="150" height="70"/><text class="text" x="43" y="100">Request</text>
+  <rect class="box" x="200" y="60" width="150" height="70"/><text class="text" x="225" y="100">Identity</text>
+  <rect class="box" x="380" y="60" width="150" height="70"/><text class="text" x="417" y="100">Policy</text>
+  <rect class="box" x="560" y="60" width="170" height="70"/><text class="text" x="588" y="100">Retrieval</text>
+  <rect class="box" x="760" y="60" width="170" height="70"/><text class="text" x="783" y="100">Evaluation</text>
+  <rect class="box" x="960" y="60" width="210" height="70"/><text class="text" x="986" y="100">Release / Review</text>
+  <line class="arrow" x1="170" y1="95" x2="200" y2="95"/>
+  <line class="arrow" x1="350" y1="95" x2="380" y2="95"/>
+  <line class="arrow" x1="530" y1="95" x2="560" y2="95"/>
+  <line class="arrow" x1="730" y1="95" x2="760" y2="95"/>
+  <line class="arrow" x1="930" y1="95" x2="960" y2="95"/>
+  <text class="small" x="37" y="160">Trace every stage. Gate before release.</text>
+</svg>
