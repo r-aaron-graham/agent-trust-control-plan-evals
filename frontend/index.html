@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Trust Control Plane Evals</title>
+  <link rel="stylesheet" href="/frontend/style.css" />
+</head>
+<body>
+  <main class="layout">
+    <section class="hero">
+      <h1>Agent Trust Control Plane Evals</h1>
+      <p>Demo workbench for policy tests, retrieval diagnostics, release gates, runtime metrics, traces, and human review.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Run a request</h2>
+      <label>User</label>
+      <select id="userSelect"></select>
+      <label>Requested tool (optional)</label>
+      <select id="toolSelect">
+        <option value="">none</option>
+        <option value="search_docs">search_docs</option>
+        <option value="get_metadata">get_metadata</option>
+        <option value="view_traces">view_traces</option>
+        <option value="run_benchmarks">run_benchmarks</option>
+      </select>
+      <label>Query</label>
+      <textarea id="queryInput" rows="5">Summarize the runtime release gate and trace logging behavior.</textarea>
+      <button id="runButton">Run</button>
+      <pre id="resultBox">Waiting for request...</pre>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Metrics</h2>
+          <button id="refreshMetrics">Refresh</button>
+        </div>
+        <pre id="metricsBox">No metrics yet.</pre>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Review Queue</h2>
+          <button id="refreshQueue">Refresh</button>
+        </div>
+        <pre id="reviewBox">No review items.</pre>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Traces</h2>
+        <div>
+          <button id="refreshTraces">Refresh</button>
+          <button id="runBenchmarks">Run benchmarks</button>
+        </div>
+      </div>
+      <pre id="traceBox">No traces yet.</pre>
+    </section>
+  </main>
+  <script src="/frontend/app.js"></script>
+</body>
+</html>
