@@ -1,0 +1,11 @@
+[
+  "tests/test_api.py::test_metrics_endpoint",
+  "tests/test_api.py::test_query_endpoint",
+  "tests/test_benchmarks.py::test_benchmark_run_has_good_accuracy",
+  "tests/test_pipeline.py::test_approved_query_flow",
+  "tests/test_pipeline.py::test_denied_query_flow",
+  "tests/test_pipeline.py::test_fallback_for_no_authorized_evidence",
+  "tests/test_pipeline.py::test_review_required_for_stale_source",
+  "tests/test_policy.py::test_policy_blocks_destructive_action",
+  "tests/test_policy.py::test_policy_blocks_sensitive_request_for_viewer"
+]
