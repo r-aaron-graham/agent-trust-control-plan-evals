@@ -1,0 +1,201 @@
+[
+  {
+    "doc_id": "DOC-001",
+    "title": "Release Gate Policy",
+    "body": "The release gate policy approves only when groundedness and citation coverage meet threshold. Otherwise the system must fallback or route to human review before release.",
+    "classification": "internal",
+    "tags": [
+      "release",
+      "evaluation",
+      "gating"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-002",
+    "title": "Trace Logging and Replay Standard",
+    "body": "Every request stores request id, user, role, policy decision, retrieved sources, evaluation scores, and final status. Traces are logged for observability and can be replayed later for inspection.",
+    "classification": "internal",
+    "tags": [
+      "trace",
+      "audit",
+      "observability"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-003",
+    "title": "Public Workbench Overview",
+    "body": "This workbench shows what the AI agent does in production: policy-aware retrieval, runtime evaluation, human review, metrics, traces, and observability.",
+    "classification": "public",
+    "tags": [
+      "overview",
+      "public",
+      "ai"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "viewer",
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-004",
+    "title": "Restricted Retrieval Guidance",
+    "body": "Restricted designs require retrieval diagnostics that show filtered documents, ranking quality, and stale evidence signals before release decisions are made.",
+    "classification": "restricted",
+    "tags": [
+      "retrieval",
+      "diagnostics",
+      "restricted"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-005",
+    "title": "Confidential Salary Table",
+    "body": "Compensation planning, salary bands, and confidential financial assumptions are not available to viewers, analysts, or architects unless explicitly authorized.",
+    "classification": "confidential",
+    "tags": [
+      "salary",
+      "confidential",
+      "finance"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-006",
+    "title": "Human Review Requirements and SOP",
+    "body": "Human review is required when retrieval is weak, evidence is stale, or the request is policy-sensitive. The SOP records reason codes and review queue entries.",
+    "classification": "internal",
+    "tags": [
+      "review",
+      "sop",
+      "escalation"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-007",
+    "title": "Stale Legacy Runbook",
+    "body": "Legacy runbook suggests shipping answers without review when confidence is unclear. This document is outdated and retained only for migration comparison.",
+    "classification": "internal",
+    "tags": [
+      "legacy",
+      "stale",
+      "runbook"
+    ],
+    "stale": true,
+    "owner_roles": [
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-008",
+    "title": "Admin Benchmark Operations and Review Queue",
+    "body": "Only administrators may run the benchmark suite, inspect official benchmark operations, or manage the review queue in the governance console.",
+    "classification": "restricted",
+    "tags": [
+      "benchmarks",
+      "admin",
+      "operations"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-009",
+    "title": "Public API and Browser Interface FAQ",
+    "body": "The browser interface opens the demo UI. Public API endpoints expose health, metrics summaries, and selected trace viewer information for demonstration.",
+    "classification": "public",
+    "tags": [
+      "faq",
+      "frontend",
+      "api"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "viewer",
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-010",
+    "title": "Incident Response Notes for Unsafe Behavior",
+    "body": "Incident response notes explain how unsafe behavior, policy denials, review-required outcomes, and regressions should be visible in traces and observability dashboards.",
+    "classification": "internal",
+    "tags": [
+      "incident",
+      "policy",
+      "trace"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "analyst",
+      "architect",
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-011",
+    "title": "Confidential Credential Rotation Plan",
+    "body": "Credentials and secret rotation procedures are confidential and must never be exposed by general-purpose answer generation.",
+    "classification": "confidential",
+    "tags": [
+      "credential",
+      "secret",
+      "confidential"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "admin"
+    ]
+  },
+  {
+    "doc_id": "DOC-012",
+    "title": "Restricted Evaluation Thresholds",
+    "body": "Restricted evaluation thresholds define groundedness at 0.70 and citation coverage at 0.60. Below threshold the runtime release gate routes the request to review or fallback.",
+    "classification": "restricted",
+    "tags": [
+      "thresholds",
+      "evaluation",
+      "restricted"
+    ],
+    "stale": false,
+    "owner_roles": [
+      "architect",
+      "admin"
+    ]
+  }
+]
