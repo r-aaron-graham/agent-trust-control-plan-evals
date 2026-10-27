@@ -1,5 +1,11 @@
 # Agent Trust Control Plane Evals
 
+[![CI](https://github.com/r-aaron-graham/agent-trust-control-plan-evals/actions/workflows/ci.yml/badge.svg)](https://github.com/r-aaron-graham/agent-trust-control-plan-evals/actions/workflows/ci.yml)
+![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)
+![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg?logo=docker&logoColor=white)
+![Golden set](https://img.shields.io/badge/golden%20set-30%2F30%20passing-brightgreen.svg)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 A fully built reference repository for the follow-on article:
 
 **How I Evaluate AI Agents in Production: Traces, Policy Tests, Retrieval Benchmarks, and Human Review**
@@ -88,11 +94,29 @@ Open:
 - Swagger docs: `http://127.0.0.1:8000/docs`
 - Frontend: `http://127.0.0.1:8000/frontend/index.html`
 
+### Docker
+
+```bash
+docker compose up --build
+```
+
+Runs as a non-root user with a healthcheck on `/api/health`. Traces, the review queue and benchmark results go to a named volume.
+
+### Configuration
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `RUNTIME_DIR` | `app/data/runtime` | Where traces, the review queue and benchmark results are written. Git-ignored. |
+
 ### Run tests
 
 ```bash
-pytest -q
+pip install -e .[dev]
+make lint
+make test
 ```
+
+Tests run against a temporary runtime directory, so they never modify files in the repo. Besides the pipeline, policy and benchmark tests, they cover input limits (empty, blank and oversized queries are rejected before anything is written to the trace log), unknown callers, role scoping for confidential topics, disallowed tools, and trace persistence across restarts.
 
 ### Run benchmarks
 
@@ -151,21 +175,15 @@ The golden evaluation set contains 30 cases across:
 
 ---
 
-## Why this helps your hiring story
+## What this demonstrates
 
-This repository is intentionally designed to close the gap between:
+The point of the repository is to show runtime behavior that is measured and governed, not just described:
 
-- *good AI architecture ideas*
-- and *visible proof that you can measure and govern runtime behavior*
-
-It gives recruiters and hiring managers evidence of:
-
-- AI platform thinking
-- LLMOps / MLOps maturity
+- a platform view of AI systems, not a single model call
+- LLMOps practice: traces, golden-set benchmarks, release gating in CI
 - API and systems design
-- runtime governance patterns
-- evaluation discipline
-- practical engineering, not just high-level strategy
+- runtime governance: policy, scoped retrieval, human review
+- evaluation discipline with reproducible results
 
 ---
 

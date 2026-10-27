@@ -5,3 +5,14 @@ __pycache__/
 app/data/runtime/*.json
 app/data/runtime/*.jsonl
 app/data/runtime/*.log
+app/data/runtime/*
+!app/data/runtime/.gitkeep
+*.zip
+*.py[cod]
+.ruff_cache/
+.coverage
+htmlcov/
+.env
+*.egg-info/
+build/
+dist/
