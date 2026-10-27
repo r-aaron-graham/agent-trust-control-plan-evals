@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from datetime import datetime
 from typing import Any, Literal
-from pydantic import BaseModel, Field
+
+from pydantic import BaseModel, Field, field_validator
 
 Role = Literal["viewer", "analyst", "architect", "admin"]
 Classification = Literal["public", "internal", "restricted", "confidential"]
@@ -94,9 +95,17 @@ class TraceRecord(BaseModel):
 
 
 class QueryRequest(BaseModel):
-    user_id: str
-    query: str
-    requested_tool: str | None = None
+    user_id: str = Field(min_length=1, max_length=100)
+    # Every query is persisted to the trace log, so bound its size.
+    query: str = Field(min_length=1, max_length=4000)
+    requested_tool: str | None = Field(default=None, max_length=100)
+
+    @field_validator("query")
+    @classmethod
+    def query_not_blank(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("query must not be blank")
+        return value
 
 
 class QueryResponse(BaseModel):
