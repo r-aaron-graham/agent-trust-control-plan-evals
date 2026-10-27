@@ -7,6 +7,7 @@ name = "agent-trust-control-plane-evals"
 version = "0.1.0"
 description = "Reference implementation for evaluating, observing, and release-gating AI agents in runtime."
 readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10"
 dependencies = [
   "fastapi>=0.111.0",
@@ -17,9 +18,10 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-  "pytest>=8.0.0",
-  "httpx>=0.27.0",
-  "ruff>=0.6.0"
+  "pytest==9.1.1",
+  "pytest-cov==7.1.0",
+  "httpx==0.28.1",
+  "ruff==0.17.2"
 ]
 
 [tool.setuptools]
@@ -28,6 +30,17 @@ packages = ["app", "app.core", "app.models", "app.routes", "app.services"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+addopts = "-ra"
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient` is deprecated"]
 
 [tool.ruff]
 line-length = 100
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+# Explicit rule set so a new ruff release can't silently change what CI enforces.
+select = ["E", "F", "W", "I", "B"]
+ignore = ["E501", "B008"]  # long literals; FastAPI's Depends() idiom
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["E402"]  # scripts add the repo root to sys.path before importing app

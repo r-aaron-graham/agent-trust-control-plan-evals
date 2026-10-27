@@ -5,7 +5,14 @@ import uuid
 from datetime import datetime, timezone
 
 from app.core.config import settings
-from app.models.schemas import BenchmarkCase, BenchmarkCaseResult, BenchmarkRunSummary, QueryResponse, RetrievalResult, TraceRecord
+from app.models.schemas import (
+    BenchmarkCase,
+    BenchmarkCaseResult,
+    BenchmarkRunSummary,
+    QueryResponse,
+    RetrievalResult,
+    TraceRecord,
+)
 from app.services.evaluator import Evaluator
 from app.services.generator import AnswerGenerator
 from app.services.identity import IdentityService

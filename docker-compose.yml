@@ -4,4 +4,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - APP_ENV=dev
+      RUNTIME_DIR: /app/runtime
+    volumes:
+      - evals-runtime:/app/runtime
+
+volumes:
+  evals-runtime:
