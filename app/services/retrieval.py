@@ -4,7 +4,7 @@ import json
 import re
 from pathlib import Path
 
-from app.models.schemas import Document, RetrievedChunk, RetrievalResult
+from app.models.schemas import Document, RetrievalResult, RetrievedChunk
 
 TOKEN_RE = re.compile(r"[a-zA-Z0-9_]+")
 MINIMUM_INCLUDE_SCORE = 0.30

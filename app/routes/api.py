@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 
@@ -17,18 +18,21 @@ def get_workbench() -> AgentWorkbench:
     return workbench
 
 
+WorkbenchDependency = Annotated[AgentWorkbench, Depends(get_workbench)]
+
+
 @router.get("/health")
 def health() -> dict:
     return {"status": "ok"}
 
 
 @router.get("/users")
-def list_users(workbench: AgentWorkbench = Depends(get_workbench)) -> list[dict]:
+def list_users(workbench: WorkbenchDependency) -> list[dict]:
     return [user.model_dump() for user in workbench.identity.list_users()]
 
 
 @router.post("/query")
-def query(payload: QueryRequest, workbench: AgentWorkbench = Depends(get_workbench)) -> dict:
+def query(payload: QueryRequest, workbench: WorkbenchDependency) -> dict:
     return workbench.handle_query(
         user_id=payload.user_id,
         query=payload.query,
@@ -37,12 +41,12 @@ def query(payload: QueryRequest, workbench: AgentWorkbench = Depends(get_workben
 
 
 @router.get("/traces")
-def list_traces(workbench: AgentWorkbench = Depends(get_workbench)) -> list[dict]:
+def list_traces(workbench: WorkbenchDependency) -> list[dict]:
     return [trace.model_dump(mode="json") for trace in workbench.traces.list()]
 
 
 @router.get("/traces/{request_id}")
-def get_trace(request_id: str, workbench: AgentWorkbench = Depends(get_workbench)) -> dict:
+def get_trace(request_id: str, workbench: WorkbenchDependency) -> dict:
     trace = workbench.traces.get(request_id)
     if not trace:
         raise HTTPException(status_code=404, detail="Trace not found")
@@ -50,17 +54,17 @@ def get_trace(request_id: str, workbench: AgentWorkbench = Depends(get_workbench
 
 
 @router.get("/review-queue")
-def review_queue(workbench: AgentWorkbench = Depends(get_workbench)) -> list[dict]:
+def review_queue(workbench: WorkbenchDependency) -> list[dict]:
     return [item.model_dump(mode="json") for item in workbench.review_queue.list()]
 
 
 @router.get("/metrics")
-def metrics(workbench: AgentWorkbench = Depends(get_workbench)) -> dict:
+def metrics(workbench: WorkbenchDependency) -> dict:
     return workbench.metrics.summarize(workbench.traces.list())
 
 
 @router.post("/benchmarks/run")
-def run_benchmarks(workbench: AgentWorkbench = Depends(get_workbench)) -> dict:
+def run_benchmarks(workbench: WorkbenchDependency) -> dict:
     return workbench.run_benchmarks().model_dump()
 
 
