@@ -176,3 +176,14 @@ It gives recruiters and hiring managers evidence of:
 - stream traces to OpenTelemetry or a warehouse
 - add policy packs for multiple business domains
 - publish benchmark cards to Hugging Face Datasets
+
+## Deployment verification
+
+Build the reviewer container from the repository root.
+
+```sh
+docker build -t reviewer-smoke .
+docker run --rm -p 127.0.0.1:8000:8000 reviewer-smoke
+```
+
+From another terminal, run `curl --fail http://127.0.0.1:8000/`. Expect HTTP 200. Stop the container with Ctrl+C when finished. Use synthetic inputs in the demo. Add authentication and restrict allowed origins before exposing it to other users.
