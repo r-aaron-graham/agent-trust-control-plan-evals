@@ -4,12 +4,14 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.11"
       - name: Install
@@ -22,3 +24,10 @@ jobs:
         run: pytest -q
       - name: Benchmark smoke test
         run: python scripts/run_benchmarks.py
+      - name: Build container
+        run: docker build --tag reviewer-smoke .
+      - name: Verify container output
+        run: |
+          docker run --detach --name reviewer-smoke --publish 127.0.0.1:8000:8000 reviewer-smoke
+          trap 'docker logs reviewer-smoke; docker rm -f reviewer-smoke' EXIT
+          curl --fail --silent --show-error --retry 12 --retry-all-errors --max-time 3 --retry-delay 1 http://127.0.0.1:8000/ > /dev/null
